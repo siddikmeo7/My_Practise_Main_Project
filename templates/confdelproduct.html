@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Confirmation Delete Work{% endblock title %}
+{% block content %}
+<style>
+    .delete-button {
+        background-color: #6c757d;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .delete-button:hover {
+        background-color: #5a6268;
+    }
+    
+    .back-button  {
+        background-color: #6c757d;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .back-button:hover {
+        background-color: #5a6268;
+    }
+</style>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+<div class="container">
+        <h1>Are You Sure to Delete Product:{{product.category}}?</h1>
+        <h2>Index:{{product.index}}</h2>
+        <h3>Colour:{{product.colour}}</h3>
+        <h4>Price:{{product.price}}</h4>
+        <h5>Up to one:{{product.up_to}}</h5>
+        <h6>Sold:{{product.sold}}</h6>
+        <h6>Amount:{{product.amount}}</h6>
+        <p>Posted At:{{product.posted_at}}</p>
+</div>
+        <button class="delete-button" type="submit">Delete</button>
+        <button class="back-button" type="button" onclick="window.history.back()">Back</button>
+    </form>
+
+{% endblock content %}

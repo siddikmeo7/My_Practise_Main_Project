@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Detail Product{% endblock title %}
+{% block content %}
+    <style>
+        .product-detail-container {
+            width: 85%;     
+            max-width: 1200px;  
+            margin: auto;
+            padding: 40px;  
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);  
+        }
+
+        .product-detail-container h1, .product-detail-container h2,
+        .product-detail-container h3, .product-detail-container h4,
+        .product-detail-container h5, .product-detail-container h6,
+        .product-detail-container p {
+            margin: 15px 0;  
+            color: #333;
+        }
+
+        .product-detail-container h1 {
+            font-size: 32px;  
+            color: #007bff;
+        }
+
+        .product-detail-container h2, .product-detail-container h3 {
+            font-size: 28px;  
+        }
+
+        .product-detail-container h4, .product-detail-container h5, .product-detail-container h6 {
+            font-size: 24px;  
+        }
+
+        .product-detail-container p {
+            font-size: 20px;  
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 20px;  
+            margin-top: 30px; 
+        }
+
+        .product-buttons a {
+            text-decoration: none;
+        }
+
+        .product-buttons button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 25px;  
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;  
+            transition: background-color 0.3s;
+        }
+
+        .product-buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        .product-buttons .delete-button {
+            background-color: #dc3545;
+        }
+
+        .product-buttons .delete-button:hover {
+            background-color: #c82333;
+        }
+
+        .back-button {
+            background-color: #6c757d;
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+    </style>
+
+    <div class="product-detail-container">
+        <p>ID:{{product.id}}</p>
+        <h1>Name: {{ product.category }}</h1>
+        <h2>Index: {{ product.index }}</h2>
+        <h3>Colour: {{ product.colour }}</h3>
+        <h4>Price: ${{ product.price }}</h4>
+        <h5>Up to one: ${{ product.up_to }}</h5>
+        <h6>Sold: ${{ product.sold }}</h6>
+        <h6>Amount: {{ product.amount }}</h6>
+        <p>Sold At: {{ product.sold_at }}</p>
+
+        <div class="product-buttons">
+            <a href="{% url 'Edit-Product' product.id %}"><button>Edit Product</button></a>
+            <a href="{% url 'Delete-Product' product.id %}"><button class="delete-button">Delete Product</button></a>
+            <button class="back-button" onclick="window.history.back()">Back</button>
+        </div>
+    </div>
+{% endblock content %}

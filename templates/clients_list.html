@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% block title %}Clients{% endblock title %}
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f8;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .zag {
+            text-align: center;
+            font-size: 32px; 
+            margin-bottom: 30px;
+            padding: 15px 0;
+            color: #007bff; 
+            font-weight: 700; 
+            background-color: #e9f5ff;
+            border-radius: 8px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); 
+        }
+
+        .table-container {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-header, .table-row {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);  
+            gap: 15px;
+            background-color: #fff;
+            padding: 5px 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 10px;
+        }
+
+       
+        .table-header {
+            font-weight: bold;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 8px;
+        }
+
+        .table-header p {
+            font-size: 16px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+    
+        .table-row {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .table-row:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-row p {
+            margin: 0;
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .table-row .category {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .table-row .category:hover {
+            color: #0056b3;
+        }
+
+        .mon {
+            font-weight: 600;
+            color: #006400;
+        }
+
+
+        @media (max-width: 992px) {
+            .table-header, .table-row {
+                grid-template-columns: repeat(4, 1fr); 
+            }
+
+            .zag {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .table-header, .table-row {
+                grid-template-columns: repeat(2, 1fr); 
+            }
+
+            .zag {
+                font-size: 24px;
+            }
+        }
+        .add-button{
+            background-color: #4CAF50; 
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .add-button:hover {
+            background-color: #16831a;
+          }
+    </style>
+
+    <div class="container">
+        <a href="{% url 'Add-Client' %}"><button class="add-button" >Add Client</button></a>
+        <h1 class="zag">Clients:</h1>
+        <div class="table-container">
+            <div class="table-header">
+                <p>First Name</p>
+                <p>Last Name</p>
+                <p>Email</p>
+                <p>Phone Number</p>
+                <p>Country</p>
+                <p>City</p>
+                <p>Region</p>
+                <p>Address</p>
+                <p>Registered At</p>
+            </div>
+            {% for client in object_list %}
+                <div class="table-row">
+                    <a class="category" href="{% url 'Detail-Client' client.id %}"><p>{{ client.first_name }}</p></a>
+                    <p>{{ client.last_name }}</p>
+                    <p>{{ client.email }}</p>
+                    <p>{{ client.phone_number }}</p>
+                    <p>{{ client.country }}</p>
+                    <p>{{ client.city }}</p>
+                    <p>{{ client.region }}</p>
+                    <p>{{ client.address }}</p>
+                    <p>{{ client.registered_at }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
